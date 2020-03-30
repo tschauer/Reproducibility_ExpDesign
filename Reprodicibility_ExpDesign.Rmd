@@ -44,7 +44,7 @@ include_graphics("files/EDLB_image.png")
 ```
 
 \begin{center}
-Patil, Peng and Leek, 2019
+Lazic, 2016
 \end{center}
 <center>
 

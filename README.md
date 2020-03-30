@@ -1,3 +1,3 @@
-## Reprodicibility and Experimental Design
+## Reproducibility and Experimental Design
 
 Departmental Seminar 2020
