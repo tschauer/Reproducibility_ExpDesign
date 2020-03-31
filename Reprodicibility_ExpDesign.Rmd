@@ -259,8 +259,225 @@ kable(dt)
 ```
 
 
+## Experimental Design Equation
+
+\small
+
+```{r, results='asis'}
+
+dt <- data.frame('Outcome = ' = c("Gene exp.","Protein", "Cell counts", "","",""),
+                 'Treatment + ' = c("Environment", "Compound","Inhibitor","siRNA", "Dose","Time"),
+                'Biological + ' = c("Sex", "Age","Weight","Litter","Genotype","Cell line"),
+                'Technical + ' = c("Person","Batch","Flask","Cage","Day","Incubator"),
+                'Error' = c("Experimental","Treatment","Sampling","Measurement","",""), check.names = F)
+
+kable(dt)
+```
+
+
+## Randomization
+
+```{r, echo=FALSE, fig.align='center', out.width = "200px"}
+include_graphics("files/randomization1.png")
+```
+
+* Completely randomized vs. randomized blocked design
+
+\begin{center}
+Lazic, 2018
+\end{center}
+<center>
+
+## 2-factor design
+
+* crossed
+
+\small
+
+
+```{r, results='asis'}
+dt <- data.frame(Control = c("*****", "*****"),
+                 Treated = c("*****","*****"))
+
+rownames(dt) <- c("Wild type", "Mutant")
+  
+kable(dt)
+
+```
+
+
+* nested
+
+\small
+
+```{r, results='asis'}
+dt <- data.frame(Control = c("*****", "*****","",""),
+                 Treated = c("","","*****","*****"))
+
+rownames(dt) <- c("Cage 1", "Cage 2", "Cage 3", "Cage 4")
+  
+kable(dt)
+```
 
 
 
 
+## 2-factor design
+
+
+* confounded
+
+\small
+
+```{r, results='asis'}
+dt <- data.frame(Control = c("**********", ""),
+                 Treated = c("","**********"))
+
+rownames(dt) <- c("Day 1", "Day 2")
+  
+kable(dt)
+```
+
+## Example
+
+* How does Christmas affect human body weight?
+<p>&nbsp;</p>
+
+
+```{r, fig.align='center', fig.height=3.3, fig.width=4.5}
+library(beeswarm)
+par(mfrow=c(1,2), oma=c(3,3,3,3), mar=c(2,4,2,0), mgp = c(1.5,0.5,0), cex.main=0.7, cex.lab=0.6, cex.axis=0.6)
+
+n = 1
+
+set.seed(1)
+dt <- data.frame(Weight = c(rnorm(n, mean = 70, sd = 1),
+                            rnorm(n, mean = 80, sd = 1)),
+                 Time = factor(rep(c("Before", "After"), each=n), levels = c("Before", "After")))
+
+beeswarm(Weight ~ Time, data = dt, pch=19, xlab="", cex=0.8, ylim=c(50,100), main = "Xmas effect")
+```
+
+
+## Example
+
+* measuerment error (3x within minutes)
+<p>&nbsp;</p>
+
+```{r, fig.align='center', fig.height=3.3, fig.width=4.5}
+library(beeswarm)
+par(mfrow=c(1,2), oma=c(3,3,3,3), mar=c(2,4,2,0), mgp = c(1.5,0.5,0), cex.main=0.7, cex.lab=0.6, cex.axis=0.6)
+
+n = 3
+
+set.seed(1)
+dt <- data.frame(Weight = c(rnorm(n, mean = 70, sd = 0.25),
+                            rnorm(n, mean = 80, sd = 0.25)),
+                 Time = factor(rep(c("Before", "After"), each=n), levels = c("Before", "After")))
+
+beeswarm(Weight ~ Time, data = dt, pch=19, xlab="", cex=0.8, ylim=c(50,100), main = "Xmas effect")
+```
+
+* qPCR well-replicates
+* sequencing the same library
+
+
+## Example
+
+* Different days same person
+<p>&nbsp;</p>
+
+```{r, fig.align='center', fig.height=3.3, fig.width=4.5}
+library(beeswarm)
+par(mfrow=c(1,2), oma=c(3,3,3,3), mar=c(2,4,2,0), mgp = c(1.5,0.5,0), cex.main=0.7, cex.lab=0.6, cex.axis=0.6)
+
+n = 3
+
+set.seed(1)
+dt <- data.frame(Weight = c(rnorm(n, mean = 70, sd = 2),
+                            rnorm(n, mean = 80, sd = 2)),
+                 Time = factor(rep(c("Before", "After"), each=n), levels = c("Before", "After")))
+
+beeswarm(Weight ~ Time, data = dt, pch=19, xlab="", cex=0.8, ylim=c(50,100), main = "Xmas effect")
+
+
+text(x = 1.5, y = 50, labels = paste("p-value <",
+                                     format(t.test(Weight ~ Time, data = dt)$p.val, digits = 2, scientific = T)),
+    cex = 0.6)
+
+```
+
+* Christmas signficantly increases human body weight ???
+* e.g. cell culture experiments (generalizable?)
+
+
+
+## Example
+
+* Different years same person
+<p>&nbsp;</p>
+
+```{r, fig.align='center', fig.height=3.3, fig.width=4.5}
+library(beeswarm)
+par(mfrow=c(1,2), oma=c(3,3,3,3), mar=c(2,4,2,0), mgp = c(1.5,0.5,0), cex.main=0.7, cex.lab=0.6, cex.axis=0.6)
+
+n = 3
+
+set.seed(2)
+
+y1 <- rnorm(n, mean = 70, sd = 3)
+
+y2 <- y1 + 10 + rnorm(n, mean = 0, sd = 0.5)
+
+dt <- data.frame(Weight = c(y1,y2),
+                 Time = factor(rep(c("Before", "After"), each=n), levels = c("Before", "After")))
+
+beeswarm(Weight ~ Time, data = dt, pch=19,
+         xlab="", cex=0.8, ylim=c(50,100), main = "Xmas effect")
+
+
+text(x = 1.5, y = 50, labels = paste("p-value <",
+                                     format(t.test(Weight ~ Time, data = dt)$p.val, digits = 2, scientific = T)),
+    cex = 0.6)
+
+```
+
+* year can be used as grouping factor
+
+
+
+## Example
+
+* Different years same person
+<p>&nbsp;</p>
+
+```{r, fig.align='center', fig.height=3.3, fig.width=4.5}
+library(beeswarm)
+par(mfrow=c(1,2), oma=c(3,3,3,3), mar=c(2,4,2,0), mgp = c(1.5,0.5,0), cex.main=0.7, cex.lab=0.6, cex.axis=0.6)
+
+n = 3
+
+set.seed(2)
+
+y1 <- rnorm(n, mean = 70, sd = 3)
+
+y2 <- y1 + 10 + rnorm(n, mean = 0, sd = 0.5)
+
+dt <- data.frame(Weight = c(y1,y2),
+                 Time = factor(rep(c("Before", "After"), each=n), levels = c("Before", "After")))
+
+beeswarm(Weight ~ Time, data = dt, pch=19,
+         xlab="", cex=0.8, ylim=c(50,100), main = "Xmas effect")
+
+segments(x0 = rep(1, each=n), y0 = dt$Weight[1:n],
+         x1 = rep(2, each=n), y1 = dt$Weight[(n+1):(2*n)])
+
+text(x = 1.5, y = 50, labels = paste("p-value <",
+                                     format(t.test(Weight ~ Time, data = dt, paired=T)$p.val, digits = 2, scientific = T)),
+    cex = 0.6)
+
+```
+
+* it is still just a single person
+* different years not always applicable
 
