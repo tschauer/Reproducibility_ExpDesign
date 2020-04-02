@@ -426,7 +426,7 @@ set.seed(2)
 
 y1 <- rnorm(n, mean = 70, sd = 3)
 
-y2 <- y1 + 10 + rnorm(n, mean = 0, sd = 0.5)
+y2 <- y1 + 10 + rnorm(n, mean = 0, sd = 1)
 
 dt <- data.frame(Weight = c(y1,y2),
                  Time = factor(rep(c("Before", "After"), each=n), levels = c("Before", "After")))
@@ -460,7 +460,7 @@ set.seed(2)
 
 y1 <- rnorm(n, mean = 70, sd = 3)
 
-y2 <- y1 + 10 + rnorm(n, mean = 0, sd = 0.5)
+y2 <- y1 + 10 + rnorm(n, mean = 0, sd = 1)
 
 dt <- data.frame(Weight = c(y1,y2),
                  Time = factor(rep(c("Before", "After"), each=n), levels = c("Before", "After")))
