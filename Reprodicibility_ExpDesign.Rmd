@@ -143,7 +143,7 @@ rect(xleft = 0, xright = 0.05, ybottom = 0, ytop = 1, col = rgb(0,0,0,0.5), bord
 ```{r, fig.align='center', fig.height=4.5, fig.width=5}
 par(mfrow=c(1,1), oma=c(3,3,3,3), mar=c(4,4,4,0), cex.lab=0.8, cex.axis=0.7)
 
-set.seed(3)
+set.seed(4)
 
 dat <- list(exp1 = rnorm(10, 0.5, 1),
            exp2 = rnorm(10, 0.5, 1),
@@ -153,8 +153,7 @@ dat <- list(exp1 = rnorm(10, 0.5, 1),
            exp6 = rnorm(10, 0.5, 1),
            exp7 = rnorm(10, 0.5, 1),
            exp8 = rnorm(10, 0.5, 1),
-           exp9 = rnorm(10, 0.5, 1),
-           exp10 = rnorm(10, 0.5, 1))
+           exp9 = rnorm(10, 0.5, 1))
 
 bplot <- barplot(unlist(lapply(dat, FUN = function(x){t.test(x)$est})),
                  names.arg = names(dat),
