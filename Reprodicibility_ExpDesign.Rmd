@@ -89,14 +89,20 @@ Patil, Peng and Leek, 2019
 ```{r, fig.align='center', fig.height=3.5, fig.width=5}
 par(mfrow=c(1,2), oma=c(3,3,3,3), mar=c(1,1,2,0), cex.main=0.9)
 
-set.seed(31)
+# set.seed(31)
+# 
+# plot(rnorm(100, mean = 5, sd = 3), rnorm(100, mean = 5, sd = 3), 
+#      pch=4, cex=0.6, main = "A",
+#      xlim = c(1,10), ylim =c(1,10), xlab="", ylab="", xaxt="n", yaxt="n")
 
-plot(rnorm(100, mean = 5, sd = 3), rnorm(100, mean = 5, sd = 3), 
+set.seed(30)
+ 
+plot(runif(100, 0, 10), runif(100, 0, 10), 
      pch=4, cex=0.6, main = "A",
      xlim = c(1,10), ylim =c(1,10), xlab="", ylab="", xaxt="n", yaxt="n")
 
 set.seed(22)
-plot(rep(1:10, each=10)+rnorm(100,sd=0.4), rep(1:10, time=10)+rnorm(100,sd=0.4),
+plot(rep(1:10, each=10)+rnorm(100,sd=0.25), rep(1:10, time=10)+rnorm(100,sd=0.25),
      pch=4, cex=0.6, main = "B",
      xlim = c(1,10), ylim =c(1,10), xlab="", ylab="", xaxt="n", yaxt="n")
 
@@ -109,7 +115,7 @@ mtext(text = "Latitude", side = 2, outer = T, cex = 0.7)
 
 * seeing pattern in randomness
 * not wanting to miss anything (what else can we get out?)
-* *if a hypthesis is derived from the data, then the ability of the data to support that hypothesis is diminished*
+* *if a hypothesis is derived from the data, then the ability of the data to support that hypothesis is diminished*
 * exploratory vs. confirmatory research
 
 ## Source of bias
@@ -262,7 +268,7 @@ kable(dt)
 * p-value
 <p>&nbsp;</p>
   + A: "Given these data what is the probability that the null hypothesis is true"
-  + B: "Given that the null hypthesis is true, what is the probability of these (or more extreme) data"
+  + B: "Given that the null hypothesis is true, what is the probability of these (or more extreme) data"
 <p>&nbsp;</p>
 * "The Earth is round (p < .05)" Cohen, 1994
 <p>&nbsp;</p>
@@ -489,4 +495,41 @@ text(x = 1.5, y = 50, labels = paste("p-value <",
 
 * it is still just a single person
 * different years not always applicable
+
+## Batch effects
+
+## What is n?
+
+* within sample testing (comparing set of genes)
+
+```{r, fig.align='center', fig.height=4, fig.width=4.75}
+library(beeswarm)
+par(mfrow=c(1,2), oma=c(3,3,3,3), mar=c(2,4,2,0), mgp = c(1.5,0.5,0), cex.main=0.7, cex.lab=0.6, cex.axis=0.6)
+
+
+set.seed(2)
+
+y1 <- rnorm(12000, mean = 0, sd = 2.5)
+
+y2 <- rnorm(3000, mean = -0.25, sd = 2.25)
+
+
+boxplot(list(Set1 = y1, Set2 = y2), 
+        col = c("darkgrey","darkred"),
+        ylab = "log2 Fold Change",
+        notch = F,
+        outline = F, ylim = c(-8,8))
+
+abline(h=0)
+
+text(x = 1.5, y = 7.5, labels = paste("p-value <",
+                                     format(wilcox.test(y1,y2)$p.val, digits = 2, scientific = T)),
+    cex = 0.6)
+
+text(x = c(1,2), y = -7.5, labels = paste("n =", c(length(y1),length(y2))),
+    cex = 0.6)
+```
+
+* True difference: -0.25
+* large number of genes inflates p-value (no diagnostic value)
 
