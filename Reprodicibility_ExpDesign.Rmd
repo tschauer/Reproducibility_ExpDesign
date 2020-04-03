@@ -230,11 +230,11 @@ arrows(x0=bplot,
 
 ```{r, results='asis'}
 dt <- data.frame(Exploratory = c("General","Generating","Before",
-                                 "Data dependent", "False Negatives", "No Diagnostic Value"),
+                                 "Data dependent", "False Negatives", "No Diagnostic Value","Rarely"),
                  Confirmatory = c("Specific","Before","After (independent data)",
-                                  "Data independent", "False Positives","Diagnostic Value"))
+                                  "Data independent", "False Positives","Diagnostic Value","Yes"))
 
-rownames(dt) <- c("Question","Hypothesis","Order","Analysis","Minimize", "P-value")
+rownames(dt) <- c("Question","Hypothesis","Order","Analysis","Minimize", "P-value", "Power Analysis")
 
 kable(dt)
 ```
@@ -243,7 +243,7 @@ kable(dt)
 include_graphics("files/preregistered.png")
 ```
 
-* Pre-registration: https://cos.io/prereg/
+
 
 ## Experimental Goal
 
@@ -257,6 +257,16 @@ rownames(dt) <- c("Subjects","Environment","Treatments","Levels",
 kable(dt)
 ```
 
+## Hypothesis testing?
+
+* p-value
+<p>&nbsp;</p>
+  + A: "Given these data what is the probability that the null hypothesis is true"
+  + B: "Given that the null hypthesis is true, what is the probability of these (or more extreme) data"
+<p>&nbsp;</p>
+* "The Earth is round (p < .05)" Cohen, 1994
+<p>&nbsp;</p>
+* Solution? Pre-registration: https://cos.io/prereg/
 
 ## Experimental Design Equation
 
