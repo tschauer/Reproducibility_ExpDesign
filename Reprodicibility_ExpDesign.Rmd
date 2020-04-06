@@ -649,13 +649,17 @@ definitions by Lazic, 2016
 
 ## Recommendations
 
-* Share: lab protocol, raw data and **analysis code**
+
+* **Ask:** exploratory or confirmatory?
 <p>&nbsp;</p>
-* Careful design (conditions, batches, confounding)
+* **Design:** conditions, batches, confounding
 <p>&nbsp;</p>
-* Quantitative data: effect size, variance
+* **Estimate:** effect size, variance, power
 <p>&nbsp;</p>
-* Analysis: what is your sampling N?
+* **Report:** what is your sampling N?
+<p>&nbsp;</p>
+* **Share:** lab protocol, raw data and analysis code
+
 
 ## Acknowledgements
 
