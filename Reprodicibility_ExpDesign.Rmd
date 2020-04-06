@@ -28,13 +28,13 @@ library(knitr)
 - What is reproducibility?
 - Source of bias
 - Experimental Design
-- Replication (n = ?)
+- Replication (N = ?)
 - Recommendations
 
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 
-Source: https://github.com/tschauer
+Source: https://github.com/tschauer/Reprodicibility_ExpDesign
 
 ## Reference Book
 
@@ -49,7 +49,7 @@ Lazic, 2016
 <center>
 
 
-## Reproducibility vs. replicablity
+## Reproducibility vs. replicability
 
 ```{r, echo=FALSE, fig.align='center', out.width = "200px"}
 include_graphics("files/repro_repli1.png")
@@ -62,7 +62,7 @@ Patil, Peng and Leek, 2019
 
 
 
-## Reproducibility vs. replicablity
+## Reproducibility vs. replicability
 
 
 ```{r, echo=FALSE, fig.align='center', out.width = "200px"}
@@ -96,7 +96,7 @@ par(mfrow=c(1,2), oma=c(3,3,3,3), mar=c(1,1,2,0), cex.main=0.9)
 #      xlim = c(1,10), ylim =c(1,10), xlab="", ylab="", xaxt="n", yaxt="n")
 
 set.seed(30)
- 
+
 plot(runif(100, 0, 10), runif(100, 0, 10), 
      pch=4, cex=0.6, main = "A",
      xlim = c(1,10), ylim =c(1,10), xlab="", ylab="", xaxt="n", yaxt="n")
@@ -115,7 +115,7 @@ mtext(text = "Latitude", side = 2, outer = T, cex = 0.7)
 
 * seeing pattern in randomness
 * not wanting to miss anything (what else can we get out?)
-* *if a hypothesis is derived from the data, then the ability of the data to support that hypothesis is diminished*
+* *"if a hypothesis is derived from the data, then the ability of the data to support that hypothesis is diminished"*
 * exploratory vs. confirmatory research
 
 ## Source of bias
@@ -124,8 +124,8 @@ mtext(text = "Latitude", side = 2, outer = T, cex = 0.7)
 
 <p>&nbsp;</p>
 
-```{r, fig.align='center', fig.height=4.5, fig.width=5}
-par(mfrow=c(1,1), oma=c(3,3,3,3), mar=c(4,4,4,0), cex.lab=0.8, cex.axis=0.8)
+```{r, fig.align='center', fig.height=4.25, fig.width=4.75}
+par(mfrow=c(1,1), oma=c(3,3,3,3), mar=c(4,4,4,0), mgp = c(1.5,0.5,0), cex.lab=0.7, cex.axis=0.7)
 
 x <- seq(0,1,0.01)
 
@@ -141,6 +141,7 @@ rect(xleft = 0, xright = 0.05, ybottom = 0, ytop = 1, col = rgb(0,0,0,0.5), bord
 
 ```
 
+original study: Poitevineau and Lecoutre, 2001
 
 ## Source of bias
 
@@ -152,14 +153,14 @@ par(mfrow=c(1,1), oma=c(3,3,3,3), mar=c(4,4,4,0), cex.lab=0.8, cex.axis=0.7)
 set.seed(4)
 
 dat <- list(exp1 = rnorm(10, 0.5, 1),
-           exp2 = rnorm(10, 0.5, 1),
-           exp3 = rnorm(10, 0.5, 1),
-           exp4 = rnorm(10, 0.5, 1),
-           exp5 = rnorm(10, 0.5, 1),
-           exp6 = rnorm(10, 0.5, 1),
-           exp7 = rnorm(10, 0.5, 1),
-           exp8 = rnorm(10, 0.5, 1),
-           exp9 = rnorm(10, 0.5, 1))
+            exp2 = rnorm(10, 0.5, 1),
+            exp3 = rnorm(10, 0.5, 1),
+            exp4 = rnorm(10, 0.5, 1),
+            exp5 = rnorm(10, 0.5, 1),
+            exp6 = rnorm(10, 0.5, 1),
+            exp7 = rnorm(10, 0.5, 1),
+            exp8 = rnorm(10, 0.5, 1),
+            exp9 = rnorm(10, 0.5, 1))
 
 bplot <- barplot(unlist(lapply(dat, FUN = function(x){t.test(x)$est})),
                  names.arg = names(dat),
@@ -182,24 +183,24 @@ arrows(x0=bplot,
 
 * lack of independence
 <p>&nbsp;</p>
-    + repeated measures
-        + observations are close together in space or time
-        + same animal, litter, cell culture dish, fly vial
-    + correlated variables
-        + different measures of a single underlying effect
-        + co-regulated genes, proteins, metabolites
-        + disease severity 
+  + repeated measures
+    + observations are close together in space or time
+    + same animal, litter, cell culture dish, fly vial
+  + correlated variables
+    + different measures of a single underlying effect
+    + co-regulated genes, proteins, metabolites
+    + disease severity 
 
 
 ## Source of bias
 
 * confirmation bias
 <p>&nbsp;</p>
-    + Pubmed search: disease + gene name
-        + what about studies which do not find the association?
-        + neglecting negative results
-    + data transformation until it "gets" significant
-    + selecting data to tell the story (data that do not fit excluded)
+  + Pubmed search: disease + gene name
+    + what about studies which do not find the association?
+    + neglecting negative results
+  + data transformation until it "gets" significant
+  + selecting data to tell the story (data that do not fit excluded)
 
 ## Source of bias
 
@@ -211,25 +212,25 @@ arrows(x0=bplot,
 
 * Experimental Design
 <p>&nbsp;</p>
-    + confounding (conditions ~ biological, technical effects)
-    + experimental unit (replicates)
-    + lack of randomization
-    + low statistical power
+  + confounding (conditions ~ biological, technical effects)
+  + experimental unit (replicates)
+  + lack of randomization
+  + low statistical power
 <p>&nbsp;</p>
 * Conducting experiments
 <p>&nbsp;</p>
-    + lack of blinding
-    + lack of randomization
-    + optional stopping
+  + lack of blinding
+  + lack of randomization
+  + optional stopping
 
 ## Common problems
 
 * Analysis
 <p>&nbsp;</p>
-    + experimental unit (inflated sample size)
-    + inapproriate model (normal distribution)
-    + incorrect interpretation
-    + selective reporting
+  + experimental unit (inflated sample size)
+  + inapproriate model (normal distribution)
+  + incorrect interpretation
+  + selective reporting
 
 ## Experimental Goal
 
@@ -256,7 +257,7 @@ include_graphics("files/preregistered.png")
 ```{r, results='asis'}
 
 dt <- data.frame(Exploratory = c("Heterogeneous", "Varied",     "Many","Many","Many", "Many","Few","Possibly","Yes","Yes"),
-                Confirmatory = c("Homogeneous", "Standardised","Few", "Few",  "Few",  "Few", "Many", "Yes","Yes","Yes"))
+                 Confirmatory = c("Homogeneous", "Standardized","Few", "Few",  "Few",  "Few", "Many", "Yes","Yes","Yes"))
 
 rownames(dt) <- c("Subjects","Environment","Treatments","Levels",
                   "Time points","Outcome","Controls","Blinding","Randomization","Blocking")
@@ -265,7 +266,7 @@ kable(dt)
 
 ## Hypothesis testing?
 
-* p-value
+* p-value?
 <p>&nbsp;</p>
   + A: "Given these data what is the probability that the null hypothesis is true"
   + B: "Given that the null hypothesis is true, what is the probability of these (or more extreme) data"
@@ -282,9 +283,9 @@ kable(dt)
 
 dt <- data.frame('Outcome = ' = c("Gene exp.","Protein", "Cell counts", "","",""),
                  'Treatment + ' = c("Environment", "Compound","Inhibitor","siRNA", "Dose","Time"),
-                'Biological + ' = c("Sex", "Age","Weight","Litter","Genotype","Cell line"),
-                'Technical + ' = c("Person","Batch","Flask","Cage","Day","Incubator"),
-                'Error' = c("Experimental","Treatment","Sampling","Measurement","",""), check.names = F)
+                 'Biological + ' = c("Sex", "Age","Weight","Litter","Genotype","Cell line"),
+                 'Technical + ' = c("Person","Batch","Flask","Cage","Day","Incubator"),
+                 'Error' = c("Experimental","Treatment","Sampling","Measurement","",""), check.names = F)
 
 kable(dt)
 ```
@@ -314,8 +315,8 @@ Lazic, 2018
 dt <- data.frame(Control = c("*****", "*****"),
                  Treated = c("*****","*****"))
 
-rownames(dt) <- c("Wild type", "Mutant")
-  
+rownames(dt) <- c("Day 1", "Day 2")
+
 kable(dt)
 
 ```
@@ -330,7 +331,7 @@ dt <- data.frame(Control = c("*****", "*****","",""),
                  Treated = c("","","*****","*****"))
 
 rownames(dt) <- c("Cage 1", "Cage 2", "Cage 3", "Cage 4")
-  
+
 kable(dt)
 ```
 
@@ -348,10 +349,97 @@ kable(dt)
 dt <- data.frame(Control = c("**********", ""),
                  Treated = c("","**********"))
 
-rownames(dt) <- c("Day 1", "Day 2")
-  
+rownames(dt) <- c("Batch 1", "Batch 2")
+
 kable(dt)
 ```
+
+## Batch effects
+
+* 3 conditions, 4 reps in 2 batches
+
+```{r, fig.align='center', fig.height=4, fig.width=5.5, message=F, warning=F, echo=F, results='hide'}
+
+SampleTable <- read.table("counts/SampleTable.txt", header = T, sep="\t", stringsAsFactors = F)
+
+SampleTable <- SampleTable[order(SampleTable$Name),]
+
+SampleTable$Conditions <- factor(SampleTable$Conditions)
+
+
+
+source("functions/makeCountTable.R")
+
+myCount_Dir <- "counts/" 
+
+myCount_Files <- list.files(path = myCount_Dir, pattern = ".*.out.tab")
+
+myCount_File_Path <- file.path(myCount_Dir, myCount_Files)
+
+
+read.counts <-  makeCountTable(count_files = myCount_Files, 
+                               count_file_path = myCount_File_Path,
+                               stranded = TRUE)
+
+
+read.counts_genes <- read.counts[grep("^FBgn", rownames(read.counts)),]
+
+
+source("functions/setupDDS.R")
+
+dds.read <- setupDDS(CountTableName = "read.counts_genes", 
+                     SampleTableName = "SampleTable",
+                     SampleIdName = "Name", 
+                     ConditionsName = "Conditions", 
+                     BatchName = "Batch",
+                     n_samples_for_filtering = 3)
+
+
+
+my_conditions <- colData(dds.read)$Sample
+
+
+log2_counts_uncor <- log2(counts(dds.read, normalized = TRUE)+1)
+
+batchVar <- colData(dds.read)$Batch
+
+library(sva)
+
+modcombat <- model.matrix(~Sample, data = colData(dds.read))
+log2_counts_bcor1 <- ComBat(dat = log2_counts_uncor, batch = batchVar, mod = modcombat, par.prior = TRUE, prior.plots = FALSE)
+
+
+
+source("functions/plottingPCA.R")
+
+cbPalette <- c("#999999", "#0072B2", "#CC79A7", "#009E73", "#E69F00", "#D55E00", "#56B4E9", "#F0E442")
+
+my_limits <- c(-100,100)
+
+par(mfrow=c(1,2), oma=c(3,3,3,3), mar=c(4,4,4,0), mgp = c(1.5,0.5,0), cex.main=0.7, cex.lab=0.6, cex.axis=0.6)
+
+plottingPCA(my_data = log2_counts_uncor,
+            color_palette = cbPalette,
+            conditions = my_conditions, 
+            my_limits = my_limits,
+            point_size = 0.6,
+            show_labels = F,
+            my_title = "Before")
+
+
+plottingPCA(my_data = log2_counts_bcor1,
+            color_palette = cbPalette,
+            conditions = my_conditions, 
+            my_limits = my_limits,
+            point_size = 0.6,
+            show_labels = F,
+            my_title = "After")
+
+
+```
+
+Data: Catherine Regnard
+
 
 ## Example
 
@@ -418,7 +506,7 @@ beeswarm(Weight ~ Time, data = dt, pch=19, xlab="", cex=0.8, ylim=c(50,100), mai
 
 text(x = 1.5, y = 50, labels = paste("p-value <",
                                      format(t.test(Weight ~ Time, data = dt)$p.val, digits = 2, scientific = T)),
-    cex = 0.6)
+     cex = 0.6)
 
 ```
 
@@ -453,7 +541,7 @@ beeswarm(Weight ~ Time, data = dt, pch=19,
 
 text(x = 1.5, y = 50, labels = paste("p-value <",
                                      format(t.test(Weight ~ Time, data = dt)$p.val, digits = 2, scientific = T)),
-    cex = 0.6)
+     cex = 0.6)
 
 ```
 
@@ -489,20 +577,19 @@ segments(x0 = rep(1, each=n), y0 = dt$Weight[1:n],
 
 text(x = 1.5, y = 50, labels = paste("p-value <",
                                      format(t.test(Weight ~ Time, data = dt, paired=T)$p.val, digits = 2, scientific = T)),
-    cex = 0.6)
+     cex = 0.6)
 
 ```
 
 * it is still just a single person
 * different years not always applicable
 
-## Batch effects
 
-## What is n?
+## What is N?
 
 * within sample testing (comparing set of genes)
 
-```{r, fig.align='center', fig.height=4, fig.width=4.75}
+```{r, fig.align='center', fig.height=3.9, fig.width=4.75}
 library(beeswarm)
 par(mfrow=c(1,2), oma=c(3,3,3,3), mar=c(2,4,2,0), mgp = c(1.5,0.5,0), cex.main=0.7, cex.lab=0.6, cex.axis=0.6)
 
@@ -523,13 +610,61 @@ boxplot(list(Set1 = y1, Set2 = y2),
 abline(h=0)
 
 text(x = 1.5, y = 7.5, labels = paste("p-value <",
-                                     format(wilcox.test(y1,y2)$p.val, digits = 2, scientific = T)),
-    cex = 0.6)
+                                      format(wilcox.test(y1,y2)$p.val, digits = 2, scientific = T)),
+     cex = 0.6)
 
 text(x = c(1,2), y = -7.5, labels = paste("n =", c(length(y1),length(y2))),
-    cex = 0.6)
+     cex = 0.6)
 ```
 
 * True difference: -0.25
 * large number of genes inflates p-value (no diagnostic value)
 
+## What is N?
+
+* Biological unit (BU): the entity about which inferences are made.
+* Experimental unit (EU): the entity that is randomly and independently assigned. Sample size N = EU.
+<p>&nbsp;</p>
+  + BU of interest
+  + groups of BUs
+  + parts of a BU
+  + sequence of observations on a BU
+<p>&nbsp;</p>
+* Replicate EU to increase N!
+
+<p>&nbsp;</p>
+definitions by Lazic, 2016
+
+## What is N?
+
+* Observational unit (OU): the entity on which measurements are taken. 
+* More OUs do not increase N
+  + e.g. cells from a single aliquot, well, slide
+* Multiple OUs should be averaged (or use hierarchical model)!
+* Report: what is EU, OU.
+
+<p>&nbsp;</p>
+definitions by Lazic, 2016
+
+
+## Recommendations
+
+* Share: lab protocol, raw data and **analysis code**
+<p>&nbsp;</p>
+* Careful design (conditions, batches, confounding)
+<p>&nbsp;</p>
+* Quantitative data: effect size, variance
+<p>&nbsp;</p>
+* Analysis: what is your sampling N?
+
+## Acknowledgements
+
+* BMC, Bioinformatics
+  + Tobias Straub
+* BMC, Molecular Biology
+  + collaborators
+* Funding: SFB 1064
+
+```{r, echo=FALSE, fig.align='center', out.width = "100px"}
+include_graphics("files/sfb1064_logo_2018_250px.jpg")
+```
