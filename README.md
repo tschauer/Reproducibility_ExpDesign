@@ -9,3 +9,7 @@ Departmental Seminar 2020
 - Experimental Design
 - Replication (N = ?)
 - Recommendations
+
+### Reference Book
+
+Lazic, 2016 - Experimental Design for Laboratory Biologists: Maximising Information and Improving Reproducibility
