@@ -660,6 +660,12 @@ definitions by Lazic, 2016
 <p>&nbsp;</p>
 * **Share:** lab protocol, raw data and analysis code
 
+## Final Thought
+
+```{r, echo=FALSE, fig.align='center', out.width = "100px"}
+include_graphics("files/cells_2x.png")
+```
+
 
 ## Acknowledgements
 
