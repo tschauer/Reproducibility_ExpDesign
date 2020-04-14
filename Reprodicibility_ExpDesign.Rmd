@@ -469,7 +469,7 @@ beeswarm(Weight ~ Time, data = dt, pch=19, xlab="", cex=0.8, ylim=c(50,100), mai
 
 ## Example
 
-* measuerment error (3x within minutes)
+* measurement error (3x within minutes)
 <p>&nbsp;</p>
 
 ```{r, fig.align='center', fig.height=3.3, fig.width=4.5}
